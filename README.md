@@ -142,7 +142,9 @@
        
        ctrl + Z
   
- (12)
+ (12) 檢視通道設定後的屬性
+ 
+       routerB#sh int tunnel 0
  
  (13)
  
