@@ -11,5 +11,11 @@
 
 * Auth, 認證技術
 
+# 實際操作
+
+ 
+ 
+     Host A        ----------      Router A    ---- WAN -----      Router B     ---------    Host B
+
 
 
