@@ -108,9 +108,15 @@
         ctrl + Z
  
  
- (6)
+ (6) 測試通道連線是否順利
  
- (7)
+       routerB#ping 192.168.1.1
+ 
+ (7) 觀察通道訊息
+ 
+      routerB#sh int tunnel 0
+      
+      Tunnel0 is up, line protocol is up.
  
  (8)
  
