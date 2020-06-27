@@ -21,9 +21,9 @@
  
  (1) 在電腦 B 上用 console line 連接路由器 B ，開啟 terminal，進入 Priviledge 模式
  
-        router#conf t
+        routerB#conf t
         
-        router(config)#hostname r2
+        routerB(config)#hostname r2
         //注意游標的變化
         //輸入網路設備名稱
  
@@ -33,16 +33,16 @@
     
                                                                      GW 192.168.0.0
  
-        router(config)#ip subnet-zero
+        routerB(config)#ip subnet-zero
         
-        router(config)#router eigrp 100
+        routerB(config)#router eigrp 100
         
-        router(config-router)#network 172.0.0.0
+        routerB(config-router)#network 172.0.0.0
         // 注意游標的變化
         
-        router(config-router)#network 192.168.0.0
+        routerB(config-router)#network 192.168.0.0
         
-        router(config-router)#no auto-summary
+        routerB(config-router)#no auto-summary
         
         ctrl + z
         
@@ -54,24 +54,59 @@
                                                                     
                                                                    192.168.0.2
                                                                       |
-                                                                    int s0
+                                                                   int s0
      Host A        ----------      Router A    ---- WAN -----      Router B - GW 172.0.0.0    
     
 
-       router#conf t
+       routerB#conf t
        
-       router(config)# int s0
+       routerB(config)# int s0
        
-       router(config-if)#ip addr 192.168.0.2 255.255.255.0
+       routerB(config-if)#ip addr 192.168.0.2 255.255.255.0
        
-       router(config-if)#no shutdown
+       routerB(config-if)#no shutdown
        
-       router(config-if)#clock rate 64000
+       routerB(config-if)#clock rate 64000
+       
+       ctrl + Z
                                                                                                                          
  
- (4)
+ (4) 測試連線 Router B ------ Router A
+     在 Router B 上使用 ping 至 Router A 的 IP 位址。
  
- (5)
+ 
+                                                                    192.168.0.2
+                                                                      |
+                                 192.168.0.1                        int s0
+     Host A        ----------      Router A    ---- WAN -----      Router B - GW 172.0.0.0   
+     
+     
+        routerB#ping 192.168.0.1
+     
+ 
+ (5) 設定通道，其編號為 O
+ 
+ 
+                                                                     192.168.0.2
+                                                                      |
+                                 192.168.0.1                        int s0
+     Host A        ----------      Router A    ---- WAN -----      Router B - GW 172.0.0.0   
+     
+                                     to0 --------------------------- to0
+                                    192.168.1.1                      192.168.1.2
+ 
+ 
+        routerB#conf t
+        routerB(config)#int tunnel 0
+        
+        routerB(config-if)#tunnel source 192.168.0.2
+        
+        routerB(config-if)#tunnel destination 192.168.0.1
+        
+        routerB(config-if)#ip address 192.168.1.2 255.255.255.0
+        
+        ctrl + Z
+ 
  
  (6)
  
