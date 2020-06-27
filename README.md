@@ -54,17 +54,20 @@
                                                                     
                                                                    192.168.0.2
                                                                       |
-                                                                    int so
+                                                                    int s0
      Host A        ----------      Router A    ---- WAN -----      Router B - GW 172.0.0.0    
     
 
        router#conf t
        
-       router(config)# int so
+       router(config)# int s0
        
        router(config-if)#ip addr 192.168.0.2 255.255.255.0
-                                                                     
-                                                         
+       
+       router(config-if)#no shutdown
+       
+       router(config-if)#clock rate 64000
+                                                                                                                         
  
  (4)
  
