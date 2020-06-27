@@ -118,14 +118,30 @@
       
       Tunnel0 is up, line protocol is up.
  
- (8)
+ (8) 檢視除錯功能是否開啟
  
- (9)
+      routerB#debug tunnel 
+      
+      Tunnel Interface dbugging is on.
  
- (10)
+ (9) 藉由 ping 通道預設的目標 IP 位址，觀察封包的加解封裝情況
  
- (11)
+ (10) 藉由 ping 對方路由器的 IP 位址，查看是否連通
  
+ (11) 開啟檢驗總和 checksum 、通道鑰 key、順序的資料報
+ 
+       routerB#conf t
+       
+       routerB(config)#int tunnel 0
+       
+       routerB(conf-if)#tunnel checksum
+       
+       routerB(conf-if)#tunnel key 31877
+       
+       routerB(conf-if)#tunnel sequence-datagrams
+       
+       ctrl + Z
+  
  (12)
  
  (13)
