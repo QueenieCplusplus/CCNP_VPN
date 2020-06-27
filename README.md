@@ -7,7 +7,7 @@
 
 * Ciphor, 加解密技術
 
-＊ Key Mgmt, 金鑰管理
+* Key Mgmt, 金鑰管理
 
 * Auth, 認證技術
 
