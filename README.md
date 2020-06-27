@@ -23,7 +23,8 @@
  
         router#conf t
         
-        router#hostname r2
+        router(config)#hostname r2
+        //注意游標的變化
         //輸入網路設備名稱
  
  (2) 在路由器上設定動態路由 EIGRP
@@ -32,20 +33,38 @@
     
                                                                      GW 192.168.0.0
  
-        router#ip subnet-zero
+        router(config)#ip subnet-zero
         
-        router#router eigrp 100
+        router(config)#router eigrp 100
         
-        router#network 172.0.0.0
+        router(config-router)#network 172.0.0.0
+        // 注意游標的變化
         
-        router#network 192.168.0.0
+        router(config-router)#network 192.168.0.0
         
-        router#no auto-summary
+        router(config-router)#no auto-summary
         
         ctrl + z
         
+        router#
+        
  
- (3)
+ (3) 設定路由器的 IP 位址
+ 
+                                                                    
+                                                                   192.168.0.2
+                                                                      |
+                                                                    int so
+     Host A        ----------      Router A    ---- WAN -----      Router B - GW 172.0.0.0    
+    
+
+       router#conf t
+       
+       router(config)# int so
+       
+       router(config-if)#ip addr 192.168.0.2 255.255.255.0
+                                                                     
+                                                         
  
  (4)
  
